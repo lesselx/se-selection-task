@@ -19,12 +19,14 @@ export function CreateBlog(){
             const data = {title:event.target[0].value, content:event.target[1].value}
             const config = { headers: {Authorization: 'Bearer ' + token} }
             Axios.post(url, data, config).then(res => {
-                console.log(res)
+                console.log(res);
+               
           })
         }
 
     return(
         <div>
+          <AdminNavigation></AdminNavigation>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label></Form.Label>
@@ -52,31 +54,23 @@ export function CreateBlog(){
 
 }
 
-// export function EditBlog(){
-//     const {id} = useParams();
-//     console.log(id)
-//     const url = BASE_URL+'blog/'
 
-//     return(
-//         <div>
-//            <Navigate to="/blogs"/>
-//         </div>
-//     )
-
-// }
 
 export function ListBlog(){
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleLike = (id) =>   Axios.post(url, {id:id}, config).then(res => {
+    const config = { headers: {Authorization: 'Bearer ' + token} }
+    const url = BASE_URL+'blog/';
+    const handleLike = (param) =>   
+    Axios.post(url, {id:param}, config).then(res => {
       console.log(res)
 })
   
 
     const [data, setData] = useState([]);
-    const url = BASE_URL+'blog/'
-    const config = { headers: {Authorization: 'Bearer ' + token} }
+  
+    
     Axios.get(url,config).then(res => {
                 console.log(res)
                 setData(res.data)
@@ -84,13 +78,12 @@ export function ListBlog(){
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
             const url = BASE_URL+'blog/'
             console.log(event);
             const data = {title:event.target[0].value, content:event.target[1].value}
             const config = { headers: {Authorization: 'Bearer ' + token} }
             Axios.put(url, data, config).then(res => {
-                console.log(res)
+                console.log(res);
           })
         }
 
@@ -104,7 +97,7 @@ export function ListBlog(){
             <Card.Text className="text-dark">
                 {blog.content}
             </Card.Text>
-            <Button onClick={handleLike} variant="primary">{blog.like} Likes</Button>
+            <Button onClick={handleLike(blog.id)} variant="primary">{blog.like} Likes</Button>
             <Button onClick={handleShow} variant="primary">Edit</Button>
             </Card.Body>
         </Card>
@@ -122,7 +115,7 @@ export function ListBlog(){
                 autoFocus
                 defaultValue={blog.title}
               />
-            </Form.Group>
+            </Form.Group> 
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
