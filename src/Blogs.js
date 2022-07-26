@@ -76,11 +76,12 @@ export function ListBlog(){
                 setData(res.data)
     })
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (param) => async (event) => {
         event.preventDefault();
+        console.log(param)
             const url = BASE_URL+'blog/'
             console.log(event);
-            const data = {title:event.target[0].value, content:event.target[1].value}
+            const data = {id:param, title:event.target[0].value, content:event.target[1].value}
             const config = { headers: {Authorization: 'Bearer ' + token} }
             Axios.put(url, data, config).then(res => {
                 console.log(res);
@@ -107,7 +108,7 @@ export function ListBlog(){
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit(blog.id)}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Title</Form.Label>
               <Form.Control
