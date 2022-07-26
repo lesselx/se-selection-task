@@ -2,13 +2,25 @@
     import './About.css';
     import { Container, Image, ListGroup, Badge } from 'react-bootstrap';
     import foto from './foto.jpg'
-    import { GuestNavigation, UserNavigation } from './Navigation';
+    import { GuestNavigation, AdminNavigation } from './Navigation';
 
     function About() {
+      const getToken = localStorage.getItem("tokens");
       return (  
         <div>
-          <GuestNavigation></GuestNavigation>
-          <div className="header">
+          { (getToken == "2b2ed488-bec6-40b1-8223-21841e3c40b8") ? (
+            <div>
+          <AdminNavigation></AdminNavigation>
+       
+         </div>
+):
+( <div>
+        <GuestNavigation></GuestNavigation>
+</div>
+    )
+          }
+
+<div className="header">
           <p>Personal Information</p>
           <div className='container'>
           <div className="row">
@@ -108,8 +120,6 @@
 
           </div>
 
-         
-          
         </div>
         
       )
@@ -156,25 +166,14 @@
             className="d-flex justify-content-between align-items-start"
           >
             <div className="ms-2">
-              <div className="fw-bold">Perak</div>
-              Staff of Family Games
+              <div className="fw-bold">Edufair</div>
+              Juara 1 Lomba Puisi
             </div>
             <Badge bg="primary" pill>
-              2021
+              2017
             </Badge>
           </ListGroup.Item>
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-          >
-            <div className="ms-2">
-              <div className="text-left fw-bold">Compfest 13</div>
-              Staff of EDM
-            </div>
-            <Badge bg="primary" pill>
-              2021
-            </Badge>
-          </ListGroup.Item>
+    
          
         </ListGroup>
       );
