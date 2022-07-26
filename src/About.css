@@ -1,0 +1,45 @@
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.header {
+    padding: 40px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+  }
+
+  .content {padding:30px;
+   
+    background: #282c34;}
+
+.center-header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.isi-biodata{
+
+text-align: center;
+  
+  
+}
+
+input[type=text] {
+  width: 100%;
+  padding-left: 20px;
+
+}
+
+.bawah{
+  padding-bottom: 10px;
+}
+
+
+
